@@ -1,19 +1,19 @@
 <div class="d-flex h-100">
 		<div class="container my-auto" style="width:400px;">
 			
-			<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+			<form [formGroup]="loginForm" (ngSubmit)="login()">
 
-				<div class="form-group" >
+				<div class="form-group" [ngClass]="{ 'has-error': submitted && f.userid.errors }">
 					<h2 class="text-center text-dark ">-Please Login-</h2>
 				</div>
 			
 				<div class="form-group">
-					<input type="email" class="form-control border-secondary" id="email" placeholder="email" formControlName="emailid" >
-				</div>
+					<input type="email" class="form-control border-secondary" id="email" placeholder="email" formControlName="userid" >    
+              </div>    
 				
 				<div class="form-group">
-					<input type="password" class="form-control border-secondary" id="pwd" placeholder="password" formControlName="password">
-				</div>
+					<input type="password" class="form-control border-secondary" id="pwd" placeholder="password" formControlName="password">   
+            </div>
 				
 				<div class="form-group form-check">
 					<label class="form-check-label">
