@@ -9,15 +9,15 @@ import { AuthService } from '../../services/auth.service';
 })
 export class ShellComponent implements OnInit {
 
-  //constructor(private router: Router, private authService: AuthService) { }
-  constructor() { }
+  constructor(private router: Router, private authService: AuthService) { }
+  //constructor() { }
 
   ngOnInit() {
   }
-  // logout() {  
-  //   console.log('logout');  
-  //   this.authService.logout();  
-  //   this.router.navigate(['/login']);  
-  // }
+  logout() {  
+    console.log('logout');  
+    this.authService.logout();  
+    this.router.navigate(['/login']);  
+  }
 
 }
