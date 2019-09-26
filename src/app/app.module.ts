@@ -10,6 +10,8 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { AuthGuard } from './guards/auth.guard'; 
 
 
+import { HttpClientModule } from '@angular/common/http'; // import for HTTPclient - added by Nanda
+
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { AuthGuard } from './guards/auth.guard';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
