@@ -63,32 +63,43 @@ export class LoginComponent implements OnInit {
       //Subscibing to login api from login service - added by Nanda
       
       this.credentials = {
-        "username": "qwerty",
-        "password": "qwerty"
+        "username": this.f.userid.value,
+        "password": this.f.password.value,
     }
 
-      this.loginService.callLoginAPI(this.credentials).subscribe(resp => {  
-        // access the body directly, which is typed as `Login`.
-        this.loginresp = { 
-          Rtoken: resp.Rtoken,
-          Atoken: resp.Atoken,
-        };
-      },
-      error => this.error = error // error path
+      this.loginService.callLoginAPI(this.credentials).subscribe(
+        resp => { 
+          this.loginresp = { 
+            refresh: resp.refresh,
+            access: resp.access,
+            detail: resp.detail };
+                }, //next ftn arrow ftn implementation added by Nanda
+        err => {
+          console.log(err);
+          console.log(this.loginresp.detail);
+              },  //error ftn arrow ftn implementation added by Nanda
+        () => {
+          console.log(this.loginresp.refresh);
+          console.log(this.loginresp.access);
+          console.log("Login successful");
+          localStorage.setItem('isLoggedIn', "true");  
+          localStorage.setItem('token', this.f.userid.value);  
+          this._router.navigate([this.returnUrl]);   
+              },  //complete ftn arrow ftn implementation added by Nanda
       );
 
 
-       if (this.f.userid.value == this.model.userid && this.f.password.value == this.model.password) {  
-       console.log("Login successful");  
-       console.log(this.loginresp.Rtoken)
-       //this.authService.authLogin(this.model);  
-       localStorage.setItem('isLoggedIn', "true");  
-       localStorage.setItem('token', this.f.userid.value);  
-       this._router.navigate([this.returnUrl]);  
-       }  
-    else {  
-       this.message = "Please check your userid and password";  
-       }  
+    //    if (this.f.userid.value == this.model.userid && this.f.password.value == this.model.password) {  
+    //    console.log("Login successful");  
+    //    //await this.delay(5000);
+       
+       
+    //    //this.authService.authLogin(this.model);  
+        
+    //    }  
+    // else {  
+    //    this.message = "Please check your userid and password";  
+    //    }  
       }  
    }
 

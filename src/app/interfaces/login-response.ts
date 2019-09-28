@@ -1,4 +1,5 @@
 export interface LoginResponse {
-    Rtoken : string;
-    Atoken : string;
+    refresh : string;
+    access : string;
+    detail : string;
 }
