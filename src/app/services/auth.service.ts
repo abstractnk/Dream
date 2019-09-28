@@ -4,7 +4,7 @@ import { of, Observable } from 'rxjs';
 import { catchError, mapTo, tap } from 'rxjs/operators';
 //import { config } from './../../config';
 import { LoginResponse } from '../interfaces/login-response';
-
+import {environment} from '.././../environments/environment'    //import for environment variables added by nanda
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +22,7 @@ export class AuthService {
 
   logout() {
     localStorage.setItem('isLoggedIn','false');
-    return this.http.post<any>(`https://abstractnk.pythonanywhere.com/api/token/logout`, {
+    return this.http.post<any>(environment.token_refresh_url, {
       'refreshToken': this.getRefreshToken()
     }).pipe(
       tap(() => this.doLogoutUser()),
@@ -38,7 +38,7 @@ export class AuthService {
   }
 
   refreshToken() {
-    return this.http.post<any>(`https://abstractnk.pythonanywhere.com/api/token/refresh`, {
+    return this.http.post<any>(environment.token_refresh_url, {
       'refreshToken': this.getRefreshToken()
     }).pipe(tap((loginResponse: LoginResponse) => {
       this.storeJwtToken(loginResponse.refresh);
