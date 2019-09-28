@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { of, Observable } from 'rxjs';
 import { catchError, mapTo, tap } from 'rxjs/operators';
 //import { config } from './../../config';
-import { LoginResponse } from '../interfaces/login-response';
+import { LoginResponse } from '../../interfaces/login-response';
 
 
 @Injectable({

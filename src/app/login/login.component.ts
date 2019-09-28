@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup , FormControl , FormBuilder , Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service'  
+import { AuthService } from '../services/authService/auth.service'  
 import { Login } from 'src/app/interfaces/login';
 import { LoginService } from '../services/loginService/login.service'   //importing login service - added by Nanda
 import { LoginResponse } from 'src/app/interfaces/login-response'; //importing login response interface - added by Nanda

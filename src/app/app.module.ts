@@ -7,10 +7,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { AuthGuard } from './guards/auth.guard'; 
+import { AuthGuard } from './guards/authGuard/auth.guard'; 
 
 
 import { HttpClientModule } from '@angular/common/http'; // import for HTTPclient - added by Nanda
+import { RoutegGuard } from './guards/routeGuard/routeg.guard';
 
 
 @NgModule({
@@ -27,7 +28,7 @@ import { HttpClientModule } from '@angular/common/http'; // import for HTTPclien
     FormsModule,
     DashboardModule
   ],
-  providers: [AuthGuard ],
+  providers: [AuthGuard, RoutegGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
