@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  login_api_url : 'https://abstractnk.pythonanywhere.com/api/token/',
+  token_refresh_url : 'https://abstractnk.pythonanywhere.com/api/token/refresh',
 };
 
 /*

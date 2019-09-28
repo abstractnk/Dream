@@ -4,6 +4,7 @@ import {Login} from '../../interfaces/login'
 import {LoginResponse} from '../../interfaces/login-response'
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
+import {environment} from '../../../environments/environment' //import for environment variables added by nanda
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,7 +19,7 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  loginurl = 'https://abstractnk.pythonanywhere.com/api/token/';
+  loginurl = environment.login_api_url;
 
   getLoginUrl() {
     return this.loginurl;
