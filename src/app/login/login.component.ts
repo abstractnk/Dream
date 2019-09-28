@@ -13,21 +13,8 @@ import { LoginResponse } from 'src/app/interfaces/login-response'; //importing l
 })
 export class LoginComponent implements OnInit {
 
-  // loginForm = new FormGroup({
-  //   emailid : new FormControl(''),
-  //   password : new FormControl(''),
-  // });
-
   loginForm : FormGroup;
   isloginpage :boolean = true;
-  // loginForm = this.loginFormBuilder.group({
-  //   emailid: ['',Validators.required],
-  //   password: ['',Validators.required],
-  // });
-
-  // emailid= new FormControl('');
-  // password= new FormControl('');
- 
 
   constructor(private loginFormBuilder: FormBuilder ,private _router: Router, private authService : AuthService, private loginService : LoginService ) { }
   model: Login = { userid: "admin@c.v", password: "admin@123" }   
@@ -84,29 +71,12 @@ export class LoginComponent implements OnInit {
           console.log("Login successful");
           localStorage.setItem('isLoggedIn', "true");  
           localStorage.setItem('token', this.f.userid.value);  
+          //added by ashiq for tokem implementation
+          this.authService.doLoginUser(this.f.userid.value, this.loginresp);
           this._router.navigate([this.returnUrl]);   
               },  //complete ftn arrow ftn implementation added by Nanda
       );
-
-
-    //    if (this.f.userid.value == this.model.userid && this.f.password.value == this.model.password) {  
-    //    console.log("Login successful");  
-    //    //await this.delay(5000);
-       
-       
-    //    //this.authService.authLogin(this.model);  
-        
-    //    }  
-    // else {  
-    //    this.message = "Please check your userid and password";  
-    //    }  
       }  
    }
-
-  //onSubmit() {
-    // TODO: Use EventEmitter with form value
-    //console.log(this.loginForm.value);
-    //this._router.navigate(['dashboard']);
-  //}
 
 }

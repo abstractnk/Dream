@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class AuthGuard implements CanActivate  {
   constructor(private router: Router) { }      
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {      
-     if (this.isLoggedIn()) {      
+     if (this.isLoggedIn()) {
      return true;      
      }      
      // navigate to login page as user is not authenticated      

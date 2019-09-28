@@ -20,6 +20,11 @@ export class LoginService {
 
   loginurl = 'https://abstractnk.pythonanywhere.com/api/token/';
 
+  getLoginUrl() {
+    return this.loginurl;
+  }
+
+
   //httpOptions set Access-Control-Allow-Origin: *;
 
   callLoginAPI(credentials: Login)
