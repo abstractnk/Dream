@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
 
   loginForm : FormGroup;
   isloginpage :boolean = true;
+  auth_fail_flag = true;    //flag to show login failed message in login page - added by Nanda
 
   constructor(private loginFormBuilder: FormBuilder ,private _router: Router, private authService : AuthService, private loginService : LoginService ) { }
   model: Login = { userid: "admin@c.v", password: "admin@123" }   
@@ -62,13 +63,21 @@ export class LoginComponent implements OnInit {
             detail: resp.detail };
                 }, //next ftn arrow ftn implementation added by Nanda
         err => {
-          console.log(err);
-          console.log(this.loginresp.detail);
+          this.loginresp = { 
+            refresh: err.refresh,
+            access: err.access,
+            detail: err.detail };   //mapping error response added by Nanda
+          
+          if (this.loginresp.detail == "No active account found with the given credentials")
+          {
+            this.auth_fail_flag=false;
+            setTimeout(() => {
+              this.auth_fail_flag=true;
+            }, 3000); //setting login failed flag to true after 3 seconds- added by Nanda
+          }   //setting login failed flag to flase - added by Nanda
               },  //error ftn arrow ftn implementation added by Nanda
         () => {
-          console.log(this.loginresp.refresh);
-          console.log(this.loginresp.access);
-          console.log("Login successful");
+          
           localStorage.setItem('isLoggedIn', "true");  
           localStorage.setItem('token', this.f.userid.value);  
           //added by ashiq for tokem implementation

@@ -41,7 +41,7 @@ export class LoginService {
   // }
 
   private handleError(res: HttpErrorResponse | any) {
-    console.error(res.error || res.body.error);
+    //log something here
     return throwError (res.error || 'Server error');
   }
 }
