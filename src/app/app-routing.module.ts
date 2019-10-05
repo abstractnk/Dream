@@ -10,7 +10,7 @@ import { RoutegGuard } from './guards/routeGuard/routeg.guard';
 const routes: Routes = [
   { path: '', component: LoginComponent, canActivate : [RoutegGuard] },
   { path: 'login', component: LoginComponent, canActivate : [RoutegGuard] },  
-  { path: 'dashboard', component: ShellComponent, canActivate : [AuthGuard] }  
+  //{ path: 'dashboard', component: ShellComponent, canActivate : [AuthGuard] }    //comenting out as already implemented in childmodule
 
   
 ];
