@@ -1,0 +1,32 @@
+<!-- <p>addproduct works!</p> -->
+
+<div class="d-flex h-100">
+    <div class="container">
+        <h4>Labels</h4>
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                <p>Category:</p>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4" >
+                <select [(ngModel)]="selectedCategory1">
+                    <option *ngFor='let item of categoryJSON | keyvalue'>{{item.key}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" *ngIf="selectedCategory1Status()">
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                <p>Category:</p>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4" >
+                <select [(ngModel)]="selectedCategory2">
+                    <div *ngFor='let item of categoryJSON | keyvalue'>
+                        <ng-container *ngIf="verify(item.key, item.value)">
+                            <option *ngFor='let cat of item.value | keyvalue'>{{cat.value}}
+                            </option>
+                        </ng-container>
+                    </div>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>

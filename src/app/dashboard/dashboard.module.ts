@@ -4,13 +4,16 @@ import { CommonModule } from '@angular/common';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { ShellComponent } from './shell/shell.component';
 import { Link1Component } from './link1/link1.component';
+import { AddproductComponent } from './addproduct/addproduct.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [ShellComponent, Link1Component],
+  declarations: [ShellComponent, Link1Component, AddproductComponent],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    FormsModule
   ],
   exports: [
     ShellComponent,
