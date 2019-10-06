@@ -20,7 +20,7 @@
             <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4" >
                 <select [(ngModel)]="selectedCategory2">
                     <div *ngFor='let item of categoryJSON | keyvalue'>
-                        <ng-container *ngIf="verify(item.key, item.value)">
+                        <ng-container *ngIf="verify(item.key)">
                             <option *ngFor='let cat of item.value | keyvalue'>{{cat.value}}
                             </option>
                         </ng-container>

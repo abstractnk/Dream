@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import * as category from "../../../app_content/categories.json"; //importing category from JSON -added by Nanda
+ 
 @Component({
   selector: 'app-addproduct',
   templateUrl: './addproduct.component.html',
@@ -12,10 +13,10 @@ export class AddproductComponent implements OnInit {
   selectedCategory2: string;
   
   constructor() {
-    var data = require('../../../app_content/categories.json') 
-    this.categoryJSON = data;
-    console.log("Json data : ", JSON.stringify(data));
-    console.log("Selected Value: ",this.selectedCategory1);
+    // var data = require('../../../app_content/categories.json') 
+    // this.categoryJSON = data;
+    // console.log("Json data : ", JSON.stringify(data));
+    // console.log("Selected Value: ",this.selectedCategory1);
   }
   
   selectedCategory1Status(){
@@ -38,6 +39,9 @@ export class AddproductComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("##########################");
+    console.log(category["Mobiles,Computers"]);
+    console.log(category["Mobiles,Computers"]["Computer and Accessories"]);
   }
 
 }

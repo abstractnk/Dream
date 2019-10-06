@@ -3,13 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { ShellComponent } from './shell/shell.component';
-import { Link1Component } from './link1/link1.component';
+import { HomeComponent } from './home/home.component';
 import { AddproductComponent } from './addproduct/addproduct.component';
 import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [ShellComponent, Link1Component, AddproductComponent],
+  declarations: [ShellComponent, HomeComponent, AddproductComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
