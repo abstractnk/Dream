@@ -8,8 +8,9 @@
                 <p>Category:</p>
             </div>
             <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4" >
-                <select [(ngModel)]="selectedCategory1">
-                    <option *ngFor='let item of categoryJSON | keyvalue'>{{item.key}}</option>
+                <select [(ngModel)]="selectedCategory1" required>
+                        <option value="" disabled selected>Choose a drink</option>
+                    <option *ngFor='let main_item of main_categories | keyvalue' >{{main_item.key}}</option>
                 </select>
             </div>
         </div>
@@ -19,12 +20,19 @@
             </div>
             <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4" >
                 <select [(ngModel)]="selectedCategory2">
-                    <div *ngFor='let item of categoryJSON | keyvalue'>
-                        <ng-container *ngIf="verify(item.key)">
-                            <option *ngFor='let cat of item.value | keyvalue'>{{cat.value}}
-                            </option>
-                        </ng-container>
-                    </div>
+                    <option *ngFor='let sec_item of sec_categories | keyvalue'>{{sec_item.key}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="row" *ngIf="selectedCategory2Status()">
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                <p>Category:</p>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4" >
+                <select [(ngModel)]="selectedCategory3">
+                    <option *ngFor='let ter_item of ter_categories | keyvalue'>{{ter_item.value}}
+                    </option>
                 </select>
             </div>
         </div>

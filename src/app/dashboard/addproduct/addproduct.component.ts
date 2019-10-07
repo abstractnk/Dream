@@ -11,16 +11,17 @@ export class AddproductComponent implements OnInit {
   categoryJSON: JSON;
   selectedCategory1: string;
   selectedCategory2: string;
-  
+  selectedCategory3: string;
+  main_categories : any;
+  sec_categories : any;
+  ter_categories : any;
+
   constructor() {
-    // var data = require('../../../app_content/categories.json') 
-    // this.categoryJSON = data;
-    // console.log("Json data : ", JSON.stringify(data));
-    // console.log("Selected Value: ",this.selectedCategory1);
   }
   
   selectedCategory1Status(){
     if(this.selectedCategory1 != null){
+      this.sec_categories = category.categories[this.selectedCategory1];
       return true;
     }
     return false;
@@ -30,18 +31,20 @@ export class AddproductComponent implements OnInit {
     return this.selectedCategory1;
   }
 
-  verify(item: string){
-    console.log("item is ",item)
-    if(item == this.selectedCategory1){
+  selectedCategory2Status(){
+    if(this.selectedCategory2 != null){
+      this.ter_categories = category.categories[this.selectedCategory1][this.selectedCategory2];
       return true;
     }
     return false;
   }
 
+  getSelectedCategory2Status(){
+    return this.selectedCategory2;
+  }
+
   ngOnInit() {
-    console.log("##########################");
-    console.log(category["Mobiles,Computers"]);
-    console.log(category["Mobiles,Computers"]["Computer and Accessories"]);
+    this.main_categories = category.categories;
   }
 
 }
