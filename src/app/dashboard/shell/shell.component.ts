@@ -21,4 +21,8 @@ export class ShellComponent implements OnInit {
     this._router.navigate(['/login']);  
   }
 
+  getUser(): any {
+    return localStorage.getItem('token');
+}
+
 }
