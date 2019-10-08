@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as category from "../../../app_content/categories.json"; //importing category from JSON -added by Nanda
+import { FormGroup , FormControl , FormBuilder , Validators} from '@angular/forms';
  
+
 @Component({
   selector: 'app-addproduct',
   templateUrl: './addproduct.component.html',
@@ -15,6 +17,13 @@ export class AddproductComponent implements OnInit {
   main_categories : any;
   sec_categories : any;
   ter_categories : any;
+  productName : any;
+  description : any;
+  price : any;
+  address : any;
+
+  disableAll = false;
+  submitMessage = false;
 
   constructor() {
   }
@@ -29,6 +38,12 @@ export class AddproductComponent implements OnInit {
 
   getSelectedCategory1Status(){
     return this.selectedCategory1;
+  }
+
+  clearAll(){
+    console.log("clear all")
+    this.selectedCategory2 = null
+      this.selectedCategory3 = null
   }
 
   selectedCategory2Status(){
@@ -46,5 +61,23 @@ export class AddproductComponent implements OnInit {
   ngOnInit() {
     this.main_categories = category.categories;
   }
+  
+  submitItem(){
+    this.disableAll = true;
+    this.submitMessage = true;
+  }
 
+  resetAll(){
+    this.selectedCategory1 = null;
+    this.selectedCategory2 = null;
+    this.selectedCategory3 = null;
+
+    this.productName = null;
+    this.description = null;
+    this.price = null;
+    this.address = null;
+
+    this.disableAll = false;
+    this.submitMessage = false;
+  }
 }
