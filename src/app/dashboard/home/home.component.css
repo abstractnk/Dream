@@ -1,0 +1,60 @@
+.col-sm {
+    padding: 0rem;
+}
+
+.col{
+    padding: 0rem;
+}
+
+.row{
+    margin: 0%;
+}
+
+.card{
+    margin: 3%;
+}
+
+.col-sm-4, .col-sm-8{
+    padding: 1%;
+    padding-top: 0.5%;
+}
+
+.card-header{
+    font-size: 13px;
+    padding: 2%;
+}
+
+.card-footer{
+    font-size: 13px;
+    padding: 2%;
+}
+
+.card-body{
+    padding: 2%;
+}
+
+.card-data{
+    font-size: 35px;
+}
+
+a:link {
+    text-decoration: none;
+    color:black;
+}
+  
+a:visited {
+    text-decoration: none;
+}
+  
+a:hover {
+    text-decoration: underline;
+}
+  
+a:active {
+    text-decoration: underline;
+}
+
+.table-light{
+    cursor: pointer;
+}
+

@@ -1,4 +1,4 @@
-  <nav class="navbar navbar-expand-md bg-dark navbar-dark" >
+  <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top" >
     <!-- Brand -->
     <a class="navbar-brand" routerLink = "/dashboard">Genie</a>
 
@@ -70,9 +70,18 @@
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
         </li> 
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" (click)="logout()">Logout</a>
-        </li> 
+        </li>  -->
+        <li class="nav-item dropdown" style="float: right;">
+            <a class="nav-link dropdown-toggle"  data-toggle="dropdown" href="#"> <div class="fas fa-user-circle"></div> Hi {{getUser()}}</a>
+            <div class="dropdown-menu bg-dark navbar-dark" >
+              <a class=" nav-link" routerLink = "linksa" > <div class="fas fa-user-circle"></div> Profile</a>
+              <a class="nav-link" href="#">About</a>
+              <a class="nav-link" href="#">Contact Us</a>
+              <a class="nav-link" [routerLink]="" (click)="logout()">LogOut</a>
+            </div>
+          </li>
       </ul>
     </div> 
   
@@ -87,5 +96,7 @@
 
 
   </nav>
-  <!-- <router-outlet></router-outlet> -->
-  <app-addproduct></app-addproduct>
+ <div style="padding-top: 55px;"> <router-outlet></router-outlet> </div> 
+
+  <!-- <app-addproduct></app-addproduct> -->
+  <!-- <div style="padding-top: 55px;">   <app-home></app-home> </div> -->

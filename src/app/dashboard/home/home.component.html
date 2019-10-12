@@ -1,1 +1,126 @@
-<p>home works!</p>
+<div class="container-fluid">
+        <div class="row">
+    
+            <div class="col-sm">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-shopping-cart"></i> Orders
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card-data">Data</div>
+                            </div>
+                            <div class="col">
+                                <div class="card-data">Data</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a routerLink="#" class="card-footer">View more...</a>
+                </div>
+            </div>
+    
+            <div class="col-sm">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-rupee-sign"></i> Sales
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card-data">Data</div>
+                            </div>
+                            <div class="col">
+                                <div class="card-data">Data</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a routerLink="#" class="card-footer">View more...</a>
+                </div>
+            </div>
+    
+            <div class="col-sm">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-warehouse"></i> Inventory
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card-data">Data</div>
+                            </div>
+                            <div class="col">
+                                <div class="card-data">Data</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a routerLink="#" class="card-footer">View more...</a>
+                </div>
+            </div>
+    
+            <div class="col-sm">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fas fa-percent"></i> Offers/Discounts
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card-data">Data</div>
+                            </div>
+                            <div class="col">
+                                <div class="card-data">Data</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a routerLink="#" class="card-footer">View more...</a>
+                </div>
+            </div>
+    
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4">
+                <table class="table table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Enquiries/Actions required</th>
+                           
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-light" *ngFor="let enq_act_item of enq_act_items" routerLink="{{enq_act_item.link}}">
+                            <td>{{enq_act_item.value}}</td>
+                        </tr>
+    
+                    </tbody>
+                </table>
+            </div>
+    
+            <div class="col-sm-8">
+                <table class="table  table-hover">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">Order ID</th>
+                            <th scope="col">Customer</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <tr class="table-light" *ngFor="let order of orders" routerLink="{{order.link}}">
+                            <td scope="row">{{order.id}}</td>
+                            <td>{{order.customer}}</td>
+                            <td>{{order.status}}</td>
+                            <td>{{order.date}}</td>
+                            <td>{{order.total}}</td>
+                        </tr>
+    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
