@@ -1,12 +1,20 @@
 <!-- <p>addproduct works!</p> -->
 
-<div class="d-flex h-100">
+<div>
     <div class="container">
-        <h4>Labels</h4>
+        <div class="row" style="height: 30px;"></div>
         <div class="row">
             <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                <p>Category:</p>
+                <h5>Add Product</h5>
             </div>
+        </div>
+        <div class="row" style="height: 30px;"></div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                <!-- <p>Category:</p><p style="color: red">*</p> -->
+                <p>Category<span style="color: red">*</span> :
+                    </p>
+                </div>
             <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4" >
                 <select class="box" [(ngModel)]="selectedCategory1" [disabled]="disableAll" required (change)="clearAll()">
                         <option value="" disabled selected>Choose a drink</option>
@@ -16,7 +24,8 @@
         </div>
         <div class="row" (change)="selectedCategory3 == null">
             <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                <p>Sub-Category1:</p>
+                    <p>Sub-Category1<span style="color: red">*</span> :
+                    </p>
             </div>
             <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4" >
                 <select class="box" [(ngModel)]="selectedCategory2" [disabled]="!selectedCategory1Status() || disableAll">
@@ -27,7 +36,8 @@
         </div>
         <div class="row">
             <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                <p>Sub-Category2:</p>
+                    <p>Sub-Category2<span style="color: red">*</span> :
+                    </p>
             </div>
             <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4" >
                 <select class="box" [(ngModel)]="selectedCategory3" [disabled]="!selectedCategory2Status() || disableAll">
@@ -38,7 +48,8 @@
         </div>
         <div class="row">
                 <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                    <p>Product Name:</p>
+                        <p>Product Name<span style="color: red">*</span> :
+                        </p>
                 </div>
                 <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
                     <input class="box" [(ngModel)]="productName" [disabled]="disableAll">
@@ -46,23 +57,26 @@
         </div>
         <div class="row">
                 <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                    <p>Description:</p>
+                        <p>Description<span style="color: red">*</span> :
+                        </p>
                 </div>
                 <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                    <textarea style="width: 60%" [(ngModel)]="description" [disabled]="disableAll"></textarea>
+                    <textarea style="width: 60%; border-radius: 5px 5px 5px 5px;" [(ngModel)]="description" [disabled]="disableAll"></textarea>
                 </div>
         </div> 
         <div class="row">
                 <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                    <p>Upload Images:</p>
+                        <p>Upload Images<span style="color: red">*</span> :
+                        </p>
                 </div>
                 <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                    <app-imageupload></app-imageupload>
+                    <app-imageupload data-toggle="tooltip" data-placement="right" title="Upload a minimum of 3 images."></app-imageupload>
                 </div>
         </div>    
         <div class="row">
                 <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                    <p>Price:</p>
+                        <p>Price<span style="color: red">*</span> :
+                        </p>
                 </div>
                 <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
                     <input class="box" [(ngModel)]="price" [disabled]="disableAll">
@@ -70,23 +84,7 @@
         </div>
         <div class="row">
                 <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                    <p>Address:</p>
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                    <input class="box" [(ngModel)]="address" [disabled]="disableAll">
-                </div>
-        </div>
-        <div class="row">
-                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                    <p>Region:</p>
-                </div>
-                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                    <input class="box" [disabled]="true" value=" Kazhakootam, Trivandrum">
-                </div>
-        </div>
-        <div class="row">
-                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
-                    <button class="btn btn-primary" (click)="submitItem()">Submit</button>
+                    <button class="btn btn-primary" (click)="submitItem()" [disabled]="!submitStatus()">Submit</button>
                 </div>
                 <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
                     <button class="btn btn-primary" (click)="resetAll()">Reset</button>

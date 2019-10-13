@@ -20,7 +20,6 @@ export class AddproductComponent implements OnInit {
   productName : any;
   description : any;
   price : any;
-  address : any;
 
   disableAll = false;
   submitMessage = false;
@@ -75,9 +74,23 @@ export class AddproductComponent implements OnInit {
     this.productName = null;
     this.description = null;
     this.price = null;
-    this.address = null;
 
     this.disableAll = false;
     this.submitMessage = false;
   }
+
+  submitStatus(){
+    if(this.selectedCategory1 != null &&
+      this.selectedCategory2 != null &&
+      this.selectedCategory3 != null &&
+      this.productName != null &&
+      this.description != null &&
+      this.price != null
+      ){
+        return true;
+      }
+      return false;
+  }
+
+
 }
