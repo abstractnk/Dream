@@ -2,10 +2,17 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+// export const environment = {
+//   production: false,
+//   login_api_url : 'https://abstractnk.pythonanywhere.com/api/token/',
+//   token_refresh_url : 'https://abstractnk.pythonanywhere.com/api/token/refresh',
+// };
+
+//for local setup
 export const environment = {
   production: false,
-  login_api_url : 'https://abstractnk.pythonanywhere.com/api/token/',
-  token_refresh_url : 'https://abstractnk.pythonanywhere.com/api/token/refresh',
+  login_api_url : 'http://127.0.0.1:8000/api/token/',
+  token_refresh_url : 'http://127.0.0.1:8000/api/token/refresh',
 };
 
 /*

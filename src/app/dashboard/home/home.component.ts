@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
     y.status = "pending";
     y.total = 150;
     y.link="#";
-    this.orders = [y,y,y,y,y,y,y,y,y,y,y];
+    this.orders = [y,y,y,y,y,y,y,y,y,y];
 
     let z = new enquiry_action_items();
     z.value = "abrakadabra";
