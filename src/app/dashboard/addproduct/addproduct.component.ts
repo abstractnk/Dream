@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import * as category from "../../../app_content/categories.json"; //importing category from JSON -added by Nanda
 import { FormGroup , FormControl , FormBuilder , Validators} from '@angular/forms';
- 
+import { ImageuploadComponent } from '../imageupload/imageupload.component';
 
 @Component({
   selector: 'app-addproduct',
   templateUrl: './addproduct.component.html',
-  styleUrls: ['./addproduct.component.css']
+  styleUrls: ['./addproduct.component.css'],
+  providers: [ImageuploadComponent]
 })
 export class AddproductComponent implements OnInit {
 
@@ -24,7 +25,7 @@ export class AddproductComponent implements OnInit {
   disableAll = false;
   submitMessage = false;
 
-  constructor() {
+  constructor(private images:ImageuploadComponent) {
   }
   
   selectedCategory1Status(){
@@ -58,6 +59,8 @@ export class AddproductComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("IN ADD PRODUCT");
+    
     this.main_categories = category.categories;
   }
   
@@ -66,7 +69,7 @@ export class AddproductComponent implements OnInit {
     this.submitMessage = true;
   }
 
-  resetAll(){
+  resetAll(event){
     this.selectedCategory1 = null;
     this.selectedCategory2 = null;
     this.selectedCategory3 = null;
@@ -77,6 +80,7 @@ export class AddproductComponent implements OnInit {
 
     this.disableAll = false;
     this.submitMessage = false;
+    this.images.resetImageList(event);
   }
 
   submitStatus(){

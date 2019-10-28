@@ -12,6 +12,8 @@ export class ImageuploadComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   previewUrl = [];
+  status = false;
+  imageStatus = true;
   onSelectFile(event) {
     if (event.target.files && event.target.files[0]) {
         var filesAmount = event.target.files.length;
@@ -19,13 +21,20 @@ export class ImageuploadComponent implements OnInit {
                 var reader = new FileReader();
 
                 reader.onload = (event:any) => {
-                  console.log(event.target.result);
+                  //console.log(event.target.result);
                    this.previewUrl.push(event.target.result); 
                 }
 
                 reader.readAsDataURL(event.target.files[i]);
+                this.status = true;
+                this.imageStatus = true;
         }
     }
+  }
+
+  resetImageList(event){
+    console.log("in reset image");
+    this.imageStatus = false;
   }
 
   ngOnInit() {
