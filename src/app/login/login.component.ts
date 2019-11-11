@@ -5,6 +5,16 @@ import { AuthService } from '../services/authService/auth.service'
 import { Login } from 'src/app/interfaces/login';
 import { LoginService } from '../services/loginService/login.service'   //importing login service - added by Nanda
 import { LoginResponse } from 'src/app/interfaces/login-response'; //importing login response interface - added by Nanda
+import {Apollo} from 'apollo-angular';
+import gql from 'graphql-tag';
+
+const tokenAuth = gql`
+  mutation tokenAuth($username: String!,$password: String!) {
+    tokenAuth(username: $username, password: $password) {
+      token
+    }
+  }
+`;
 
 @Component({
   selector: 'app-login',
@@ -17,7 +27,8 @@ export class LoginComponent implements OnInit {
   isloginpage :boolean = true;
   auth_fail_flag = true;    //flag to show login failed message in login page - added by Nanda
 
-  constructor(private loginFormBuilder: FormBuilder ,private _router: Router, private authService : AuthService, private loginService : LoginService ) { }
+
+  constructor(private loginFormBuilder: FormBuilder ,private _router: Router, private authService : AuthService, private loginService : LoginService,private apollo: Apollo ) { }
   model: Login = { userid: "admin@c.v", password: "admin@123" }   
   message: string;  
   returnUrl: string;
@@ -50,42 +61,59 @@ export class LoginComponent implements OnInit {
       
       //Subscibing to login api from login service - added by Nanda
       
-      this.credentials = {
-        "username": this.f.userid.value,
-        "password": this.f.password.value,
-    }
+    //   this.credentials = {
+    //     "username": this.f.userid.value,
+    //     "password": this.f.password.value,
+    // }
+    
 
-      this.loginService.callLoginAPI(this.credentials).subscribe(
-        resp => { 
-          this.loginresp = { 
-            refresh: resp.refresh,
-            access: resp.access,
-            detail: resp.detail };
-                }, //next ftn arrow ftn implementation added by Nanda
-        err => {
-          this.loginresp = { 
-            refresh: err.refresh,
-            access: err.access,
-            detail: err.detail };   //mapping error response added by Nanda
+    //   this.loginService.callLoginAPI(this.credentials).subscribe(
+    //     resp => { 
+    //       this.loginresp = { 
+    //         refresh: resp.refresh,
+    //         access: resp.access,
+    //         detail: resp.detail };
+    //             }, //next ftn arrow ftn implementation added by Nanda
+    //     err => {
+    //       this.loginresp = { 
+    //         refresh: err.refresh,
+    //         access: err.access,
+    //         detail: err.detail };   //mapping error response added by Nanda
           
-          if (this.loginresp.detail == "No active account found with the given credentials")
-          {
-            this.auth_fail_flag=false;
-            setTimeout(() => {
-              this.auth_fail_flag=true;
-            }, 3000); //setting login failed flag to true after 3 seconds- added by Nanda
-          }   //setting login failed flag to flase - added by Nanda
-              },  //error ftn arrow ftn implementation added by Nanda
-        () => {
+    //       if (this.loginresp.detail == "No active account found with the given credentials")
+    //       {
+    //         this.auth_fail_flag=false;
+    //         setTimeout(() => {
+    //           this.auth_fail_flag=true;
+    //         }, 3000); //setting login failed flag to true after 3 seconds- added by Nanda
+    //       }   //setting login failed flag to flase - added by Nanda
+    //           },  //error ftn arrow ftn implementation added by Nanda
+    //     () => {
           
-          localStorage.setItem('isLoggedIn', "true");  
-          localStorage.setItem('token', this.f.userid.value);  
-          //added by ashiq for tokem implementation
-          this.authService.doLoginUser(this.f.userid.value, this.loginresp);
-          this._router.navigate([this.returnUrl]);   
-              },  //complete ftn arrow ftn implementation added by Nanda
-      );
-      }  
+    //       localStorage.setItem('isLoggedIn', "true");  
+    //       localStorage.setItem('token', this.f.userid.value);  
+    //       //added by ashiq for tokem implementation
+    //       this.authService.doLoginUser(this.f.userid.value, this.loginresp);
+    //       this._router.navigate([this.returnUrl]);   
+    //           },  //complete ftn arrow ftn implementation added by Nanda
+    //   );
+    
+    this.apollo.mutate({
+      mutation: tokenAuth,
+      variables: {
+        username: 'admin',
+        password : 'admin'
+      }
+    }).subscribe(({ data }) => {
+      console.log('got data', data["tokenAuth"]["token"]);
+    },(error) => {
+      console.log('there was an error sending the query', error);
+    },
+    ()=>{console.log("complete");});
+
+      
+    
+    }  
    }
 
 }

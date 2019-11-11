@@ -11,8 +11,7 @@
 //for local setup
 export const environment = {
   production: false,
-  login_api_url : 'http://127.0.0.1:8000/api/token/',
-  token_refresh_url : 'http://127.0.0.1:8000/api/token/refresh',
+  graphqlendpoint : 'http://127.0.0.1:8000/graphql/'
 };
 
 /*

@@ -22,7 +22,7 @@ export class AuthService {
 
   logout() {
     localStorage.setItem('isLoggedIn','false');
-    return this.http.post<any>(environment.token_refresh_url, {
+    return this.http.post<any>(environment.graphqlendpoint, {
       'refreshToken': this.getRefreshToken()
     }).pipe(
       tap(() => this.doLogoutUser()),
@@ -38,7 +38,7 @@ export class AuthService {
   }
 
   refreshToken() {
-    return this.http.post<any>(environment.token_refresh_url, {
+    return this.http.post<any>(environment.graphqlendpoint, {
       'refreshToken': this.getRefreshToken()
     }).pipe(tap((loginResponse: LoginResponse) => {
       this.storeJwtToken(loginResponse.refresh);

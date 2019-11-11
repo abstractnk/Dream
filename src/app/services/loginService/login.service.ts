@@ -19,18 +19,19 @@ export class LoginService {
 
   constructor(private http: HttpClient) { }
 
-  loginurl = environment.login_api_url;
+  graphqlendpoint = environment.graphqlendpoint;
 
   getLoginUrl() {
-    return this.loginurl;
+    return this.graphqlendpoint;
   }
 
 
   //httpOptions set Access-Control-Allow-Origin: *;
 
-  callLoginAPI(credentials: Login)
+  callLoginAPI(credentials: any)
   {
-    return this.http.post<LoginResponse>(this.loginurl, credentials, httpOptions)
+    console.log(this.http.post<LoginResponse>(this.graphqlendpoint, credentials, httpOptions));
+    return this.http.post<LoginResponse>(this.graphqlendpoint, credentials, httpOptions)
       .pipe(
         catchError(this.handleError)
       );
