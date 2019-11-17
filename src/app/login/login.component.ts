@@ -7,6 +7,7 @@ import { LoginService } from '../services/loginService/login.service'   //import
 import { LoginResponse } from 'src/app/interfaces/login-response'; //importing login response interface - added by Nanda
 import {Apollo} from 'apollo-angular';
 import gql from 'graphql-tag';
+import { all } from 'q';
 
 const tokenAuth = gql`
   mutation tokenAuth($username: String!,$password: String!) {
@@ -25,9 +26,11 @@ export class LoginComponent implements OnInit {
 
   loginForm : FormGroup;
   isloginpage :boolean = true;
-  auth_fail_flag = true;    //flag to show login failed message in login page - added by Nanda
-
-
+  auth_fail_flag = false;    //flag to show login failed message in login page - added by Nanda
+  server_error_flag = false;    //flag to show login failed message in login page - added by Nanda
+  user_token : string;      //variable to hold jwt token - graphql
+  data : any;
+  errors : any;
   constructor(private loginFormBuilder: FormBuilder ,private _router: Router, private authService : AuthService, private loginService : LoginService,private apollo: Apollo ) { }
   model: Login = { userid: "admin@c.v", password: "admin@123" }   
   message: string;  
@@ -101,19 +104,53 @@ export class LoginComponent implements OnInit {
     this.apollo.mutate({
       mutation: tokenAuth,
       variables: {
-        username: 'admin',
-        password : 'admin'
-      }
-    }).subscribe(({ data }) => {
-      console.log('got data', data["tokenAuth"]["token"]);
+        username: this.f.userid.value,
+        password : this.f.password.value
+      },
+      errorPolicy : "all",
+    }).subscribe(
+      ({data,errors,context,extensions}) => {
+      this.data=data;
+      this.errors = errors;
     },(error) => {
       console.log('there was an error sending the query', error);
+      this.server_error_flag=true;
+              setTimeout(() => {
+                this.server_error_flag=false;
+              }, 3000);
     },
-    ()=>{console.log("complete");});
+    ()=>{
+      if (null != this.data["tokenAuth"])
+          {
+            console.log(">>>>>> "+ this.data["tokenAuth"]["token"])
+            localStorage.setItem('isLoggedIn', "true");  
+            localStorage.setItem('token', this.data["tokenAuth"]["token"]);  
+            // this.authService.doLoginUser(this.user_token, this.loginresp);
+            this._router.navigate([this.returnUrl]);   
+          }
+      else
+          {
+            console.log("------ "+ this.errors[0]["message"])
+            if("Please, enter valid credentials" == this.errors[0]["message"])
+            {
+              this.auth_fail_flag=true;
+              setTimeout(() => {
+                this.auth_fail_flag=false;
+              }, 3000);
+            }
+            else
+            {
+              this.server_error_flag=true;
+              setTimeout(() => {
+                this.server_error_flag=false;
+              }, 3000);
+            }
+          }
 
-      
+    }
     
-    }  
+    );  
    }
 
+  }
 }

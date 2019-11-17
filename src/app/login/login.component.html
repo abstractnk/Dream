@@ -35,8 +35,13 @@
 						</div>
 				</div> 
 				<div class="text-center form-group" >
-					<div *ngIf="!auth_fail_flag" class="text-danger" style="margin-top:15px">
+					<div *ngIf="auth_fail_flag" class="text-danger" style="margin-top:15px">
 						<strong>Invalid Credentials entered. Please try again. </strong>
+					</div>
+				</div>	
+				<div class="text-center form-group" >
+					<div *ngIf="server_error_flag" class="text-danger" style="margin-top:15px">
+						<strong>Server error. Please try again later.</strong>
 					</div>
 				</div>		
 				
