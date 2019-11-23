@@ -31,14 +31,9 @@ export class LoginComponent implements OnInit {
   user_token : string;      //variable to hold jwt token - graphql
   data : any;
   errors : any;
-  constructor(private loginFormBuilder: FormBuilder ,private _router: Router, private authService : AuthService, private loginService : LoginService,private apollo: Apollo ) { }
-  model: Login = { userid: "admin@c.v", password: "admin@123" }   
-  message: string;  
+  constructor(private loginFormBuilder: FormBuilder ,private _router: Router, private authService : AuthService, private loginService : LoginService,private apollo: Apollo ) { } 
   returnUrl: string;
-  loginresp : LoginResponse; // object to hold login-api response - added by Nanda
-  headers : any; // object to hold login-api response header- added by Nanda
-  error : any // object to hold login-api response error- added by Nanda
-  credentials : any // object to hold login credentials for request- added by Nanda
+  
   ngOnInit() {
 
     this.isloginpage=true;
@@ -61,46 +56,6 @@ export class LoginComponent implements OnInit {
        return;  
     }  
     else { 
-      
-      //Subscibing to login api from login service - added by Nanda
-      
-    //   this.credentials = {
-    //     "username": this.f.userid.value,
-    //     "password": this.f.password.value,
-    // }
-    
-
-    //   this.loginService.callLoginAPI(this.credentials).subscribe(
-    //     resp => { 
-    //       this.loginresp = { 
-    //         refresh: resp.refresh,
-    //         access: resp.access,
-    //         detail: resp.detail };
-    //             }, //next ftn arrow ftn implementation added by Nanda
-    //     err => {
-    //       this.loginresp = { 
-    //         refresh: err.refresh,
-    //         access: err.access,
-    //         detail: err.detail };   //mapping error response added by Nanda
-          
-    //       if (this.loginresp.detail == "No active account found with the given credentials")
-    //       {
-    //         this.auth_fail_flag=false;
-    //         setTimeout(() => {
-    //           this.auth_fail_flag=true;
-    //         }, 3000); //setting login failed flag to true after 3 seconds- added by Nanda
-    //       }   //setting login failed flag to flase - added by Nanda
-    //           },  //error ftn arrow ftn implementation added by Nanda
-    //     () => {
-          
-    //       localStorage.setItem('isLoggedIn', "true");  
-    //       localStorage.setItem('token', this.f.userid.value);  
-    //       //added by ashiq for tokem implementation
-    //       this.authService.doLoginUser(this.f.userid.value, this.loginresp);
-    //       this._router.navigate([this.returnUrl]);   
-    //           },  //complete ftn arrow ftn implementation added by Nanda
-    //   );
-    
     this.apollo.mutate({
       mutation: tokenAuth,
       variables: {

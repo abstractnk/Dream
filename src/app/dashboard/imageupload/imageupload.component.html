@@ -1,7 +1,7 @@
 <div class="form-group">
         <input type="file" name="image" (change)="onSelectFile($event)" multiple/>
     </div>
-    <div class="image-preview mb-3" *ngIf="status">
-        <img *ngFor='let image of previewUrl' [src]="image" height="100" />                 
+    <div class="image-preview mb-3">
+        <img *ngFor='let image of previewUrl' src="image" height="100" />                 
     </div>
 
