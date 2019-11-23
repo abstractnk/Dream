@@ -1,5 +1,5 @@
 <div class="d-flex h-100">
-		<div class="container my-auto" style="width:400px;">
+		<div class="container my-auto" style="width:400px; height:20em;">
 			
 			<form [formGroup]="loginForm" (ngSubmit)="login()">
 
@@ -22,18 +22,28 @@
 				</div>
 				
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary btn-block"  [disabled]="!loginForm.valid" >Log In</button>
+					 <button type="submit" class="btn btn-primary btn-block">Log In</button> <!--disable of login button removed by Nanda -->
 				</div>
 				
 				<div class="form-group" >
-					<a href="#" class="float-right text-dark" >Forgot username/password?</a>
+					<a href="#" class="text-dark" >Forgot username/password?</a>
 				</div>
 
-				<!-- <div class="form-group" >
-						<div *ngIf="loginFormControl.emailid.errors" class="text-errors">
-							Invalid email id.
+				 <div class="text-center form-group" >
+						<div *ngIf="!loginForm.valid" class=" text-danger" style="margin-top:15px">
+							Enter valid e-mail id and password.
 						</div>
-				</div> -->
+				</div> 
+				<div class="text-center form-group" >
+					<div *ngIf="auth_fail_flag" class="text-danger" style="margin-top:15px">
+						<strong>Invalid Credentials entered. Please try again. </strong>
+					</div>
+				</div>	
+				<div class="text-center form-group" >
+					<div *ngIf="server_error_flag" class="text-danger" style="margin-top:15px">
+						<strong>Server error. Please try again later.</strong>
+					</div>
+				</div>		
 				
 				
 			</form>

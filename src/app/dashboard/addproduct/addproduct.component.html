@@ -1,0 +1,99 @@
+<!-- <p>addproduct works!</p> -->
+
+<div>
+    <div class="container">
+        <div class="row" style="height: 30px;"></div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                <h5>Add Product</h5>
+            </div>
+        </div>
+        <div class="row" style="height: 30px;"></div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                <!-- <p>Category:</p><p style="color: red">*</p> -->
+                <p>Category<span style="color: red">*</span> :
+                    </p>
+                </div>
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4" >
+                <select class="box" [(ngModel)]="selectedCategory1" [disabled]="disableAll" required (change)="clearAll()">
+                        <option value="" disabled selected>Choose a drink</option>
+                    <option *ngFor='let main_item of main_categories | keyvalue' >{{main_item.key}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row" (change)="selectedCategory3 == null">
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                    <p>Sub-Category1<span style="color: red">*</span> :
+                    </p>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4" >
+                <select class="box" [(ngModel)]="selectedCategory2" [disabled]="!selectedCategory1Status() || disableAll">
+                    <option *ngFor='let sec_item of sec_categories | keyvalue'>{{sec_item.key}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                    <p>Sub-Category2<span style="color: red">*</span> :
+                    </p>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4" >
+                <select class="box" [(ngModel)]="selectedCategory3" [disabled]="!selectedCategory2Status() || disableAll">
+                    <option *ngFor='let ter_item of ter_categories | keyvalue'>{{ter_item.value}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                        <p>Product Name<span style="color: red">*</span> :
+                        </p>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                    <input class="box" [(ngModel)]="productName" [disabled]="disableAll">
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                        <p>Description<span style="color: red">*</span> :
+                        </p>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                    <textarea style="width: 60%; border-radius: 5px 5px 5px 5px;" [(ngModel)]="description" [disabled]="disableAll"></textarea>
+                </div>
+        </div> 
+        <div class="row">
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                        <p>Upload Images<span style="color: red">*</span> :
+                        </p>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                    <app-imageupload data-toggle="tooltip" data-placement="right" title="Upload a minimum of 3 images."></app-imageupload>
+                </div>
+        </div>    
+        <div class="row">
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                        <p>Price<span style="color: red">*</span> :
+                        </p>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                    <input class="box" [(ngModel)]="price" [disabled]="disableAll">
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                    <button class="btn btn-primary" (click)="submitItem()" [disabled]="!submitStatus()">Submit</button>
+                </div>
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                    <button class="btn btn-primary" (click)="resetAll($event)">Reset</button>
+                </div>
+        </div>
+        <div class="row">
+                <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                    <p *ngIf="submitMessage">Please wait for 3-5 days for Validation</p>
+                </div>
+        </div>
+    </div>
+</div>

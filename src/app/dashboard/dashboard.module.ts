@@ -3,14 +3,22 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { ShellComponent } from './shell/shell.component';
-import { Link1Component } from './link1/link1.component';
+import { HomeComponent } from './home/home.component';
+import { AddproductComponent } from './addproduct/addproduct.component';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ImageuploadComponent } from './imageupload/imageupload.component';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 
 @NgModule({
-  declarations: [ShellComponent, Link1Component],
+  declarations: [ShellComponent, HomeComponent, AddproductComponent, ImageuploadComponent],
   imports: [
     CommonModule,
-    DashboardRoutingModule
+    DashboardRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports: [
     ShellComponent,
