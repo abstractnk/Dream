@@ -14,12 +14,14 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 
 import { HttpClientModule } from '@angular/common/http'; // import for HTTPclient - added by Nanda
 import { RoutegGuard } from './guards/routeGuard/routeg.guard';
+import { ViewproductsComponent } from './viewproducts/viewproducts.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    ViewproductsComponent,
  
   ],
   imports: [
