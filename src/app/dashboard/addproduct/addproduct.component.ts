@@ -3,16 +3,14 @@ import * as category from "../../../app_content/categories.json"; //importing ca
 import { FormGroup , FormControl , FormBuilder , Validators} from '@angular/forms';
 import {Apollo} from 'apollo-angular';
 import gql from 'graphql-tag';
-import { all } from 'q';
-//import { createHttpLink } from "apollo-link-http"; this import is not resolvable
-import ApolloClient from "apollo-client";
-import { InMemoryCache } from "apollo-cache-inmemory";
  
 
 const tokenAuth = gql`
-  mutation addNewItem($mainCategory: String!,$subCategory1: String!,$subCategory2: String!,$productName: String!,$description: String!,$price: float!,$totalQuantityLeft: int!) {
-    addNewItem(mainCategory: $mainCategory,subCategory1: $subCategory1,subCategory2: $subCategory2,productName: $productName,description: $description,price: $price,totalQuantityLeft: $itotalQuantityLeftnt) {
-      itemKey
+  mutation addNewItem($mainCategory: String!,$subCategory1: String!,$subCategory2: String!,$productName: String!,$description: String!,$price: Float!,$totalQuantityLeft: Int!) {
+    addNewItem(mainCategory: $mainCategory,subCategory1: $subCategory1,subCategory2: $subCategory2,productName: $productName,description: $description,price: $price,totalQuantityLeft: $totalQuantityLeft) {
+      item{
+        itemKey
+      }
     }
   }
 `;
@@ -82,7 +80,7 @@ export class AddproductComponent implements OnInit {
     this.disableAll = true;
     this.submitMessage = true;
 
-     
+    console.log("JWT "+localStorage.getItem('token') );
     this.apollo.mutate({
       mutation: tokenAuth,
       variables: {
@@ -95,31 +93,19 @@ export class AddproductComponent implements OnInit {
         totalQuantityLeft: 10
       },
       errorPolicy : "all",
+      context: { headers: { Authorization: "JWT "+localStorage.getItem('token') } },
     }).subscribe(
       ({data,errors,context,extensions}) => {
       this.data=data;
       this.errors = errors;
     },(error) => {
       console.log('there was an error sending the query', error);
+    },
+    ()=>{
+      console.log(">>>>>> "+ this.data["addNewItem"]["item"]["itemKey"])
     }
     
-    );  
-
-    // Need to set context to give headers. But not able to resolve import on line 7
-    // const client = new ApolloClient({
-    //   link: createHttpLink({ uri: "/graphql" }),
-    //   cache: new InMemoryCache()
-    // });
-    
-    // // a query with apollo-client
-    // client.query({
-    //   query: tokenAuth,
-    //   context: {
-    //     headers: {
-    //       Authorization: "JWT "+localStorage.get('token')
-    //     }
-    //   }
-    // });
+    ); 
     
   }
 
