@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     this.isloginpage=true;
 
     this.loginForm = this.loginFormBuilder.group({
-      userid: ['',[Validators.required, Validators.email]],
+      userid: ['',[Validators.required]],
       password: ['',Validators.required],
     })
     this.returnUrl = 'dashboard';  

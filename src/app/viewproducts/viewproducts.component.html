@@ -3,7 +3,7 @@
 </div>
 <div class="container-fluid">
     <div class="row">
-        <div id="filter-product" class="col-md-3 col-md-push-9 col-sm-12 hidden-sm hidden-xs">
+        <!-- <div id="filter-product" class="col-md-3 col-md-push-9 col-sm-12 hidden-sm hidden-xs">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="fa fa-filter"></i> Filter</h3>
@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="col-md-9 col-md-pull-3 col-sm-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -58,46 +58,46 @@
                                         <td style="width: 1px;" class="text-center"><input type="checkbox" /></td>
                                         <td class="text-center">Image</td>
                                         <td class="text-left"> <a>Product Name</a> </td>
-                                        <td class="text-left"> <a>Model</a> </td>
                                         <td class="text-right"> <a>Price</a> </td>
-                                        <td class="text-right"> <a>Quantity</a> </td>
-                                        <td class="text-left"> <a>Status</a> </td>
+                                        <td class="text-right"> <a>Quantity Left</a> </td>
+                                        <td class="text-left"> <a>Discounts</a> </td>
                                         <td class="text-right">Action</td>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
+                                <tbody> 
+                                        <tr>
+                                                <td class="text-center"></td>
+                                                <td class="text-center"> </td>
+                                                <td class="text-left">
+                                                    <input type="search">
+                                                </td>
+                                                <td class="text-left"><input type="search"></td>
+                                                <td class="text-right">
+                                                        <input type="search">
+                                                </td>
+                                                <td class="text-right">
+                                                        <input type="search">
+                                                </td>
+                                                <td class="text-left">
+                                                        <input type="search">
+                                                </td>
+                                                <td class="text-right">
+                                                        <input type="search">
+                                                </td>
+                                            </tr>
+                                    <tr *ngFor = "let prod of data">
                                         <td class="text-center"> <input type="checkbox" />
                                         </td>
                                         <td class="text-center"> <img
                                                 src="https://demo.opencart.com/image/cache/catalog/demo/sony_vaio_1-40x40.jpg"
                                                 alt="Sony VAIO" class="img-thumbnail" /> </td>
-                                        <td class="text-left">Sony VAIO</td>
-                                        <td class="text-left">Product 19</td>
-                                        <td class="text-right"> $1,000.00
-                                        </td>
+                                        <td class="text-left">{{ prod["itemId"]["productName"] }}</td>
+                                        <td class="text-left">{{ prod["itemId"]["price"] }}</td>
+                                        <td class="text-right">{{ prod["itemId"]["totalQuantityLeft"] }}</td>
                                         <td class="text-right"> <span class="label label-warning">0</span> </td>
                                         <td class="text-left">Enabled</td>
                                         <td class="text-right"><a
                                                 href="https://demo.opencart.com/admin/index.php?route=catalog/product/edit&amp;user_token=7vm5nMgHqKEZUbg0r8hcVBH9GisEjC2U&amp;product_id=46&amp;order=DESC"
-                                                data-toggle="tooltip" title="Edit" class="btn btn-primary"><i
-                                                    class="fa fa-pencil"></i></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-center"> <input type="checkbox" name="selected[]"
-                                                value="33" />
-                                        </td>
-                                        <td class="text-center"> <img
-                                                src="https://demo.opencart.com/image/cache/catalog/demo/samsung_syncmaster_941bw-40x40.jpg"
-                                                alt="Samsung SyncMaster 941BW" class="img-thumbnail" /> </td>
-                                        <td class="text-left">Samsung SyncMaster 941BW</td>
-                                        <td class="text-left">Product 6</td>
-                                        <td class="text-right"> $200.00
-                                        </td>
-                                        <td class="text-right"> <span class="label label-warning">0</span> </td>
-                                        <td class="text-left">Enabled</td>
-                                        <td class="text-right"><a
-                                                href="https://demo.opencart.com/admin/index.php?route=catalog/product/edit&amp;user_token=7vm5nMgHqKEZUbg0r8hcVBH9GisEjC2U&amp;product_id=33&amp;order=DESC"
                                                 data-toggle="tooltip" title="Edit" class="btn btn-primary"><i
                                                     class="fa fa-pencil"></i></a></td>
                                     </tr>
