@@ -3,5 +3,17 @@
 <router-outlet></router-outlet>
 <a href="" value="123">asdf</a>
 
-<html><head><title>sonar vul</title></head><body><h1>HEADING FORM</h1><form><button formaction="javascript:alert(1)">X</button>
-</body></html>
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>HTML Frames</title>
+   </head>
+   <frameset rows = "10%,80%,10%">
+      <frame name = "top" src = "/html/top_frame.htm" />
+      <frame name = "main" src = "/html/main_frame.htm" />
+      <frame name = "bottom" src = "/html/bottom_frame.htm" />
+      <noframes>
+         <body>Your browser does not support frames.</body>
+      </noframes>
+   </frameset>
+</html>
